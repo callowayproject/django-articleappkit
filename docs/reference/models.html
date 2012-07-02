@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Model Reference &mdash; django-articleappkit v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="django-articleappkit v0.1 documentation" href="../index.html" />
+  </head>
+  <body>
+<div id="docstitle">
+	<p>django-articleappkit v0.1 documentation</p>
+</div>
+<div id="header">
+	<div id="title"><h1>Model Reference</h1></div>
+	<ul id="headerButtons">
+		<li id="toc_button"><div class="headerButton"><a href="#">Table of Contents</a></div></li>
+		<li id="page_buttons">
+			<div class="headerButton"><a href="../genindex.html" title="General Index" accesskey="I">index</a></div>
+		</li>
+	</ul>
+</div>
+
+<div id="sphinxsidebar">
+  <div class="sphinxsidebarwrapper">
+	<ul><li class="toctree-l1"><a href="../index.html">Main Page</a></li></ul>
+	<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Reference</a></li>
+</ul>
+
+    <div id="searchbox" style="display: none">
+
+        <form class="search" action="../search.html" method="get">
+			<div class="search-wrapper">
+			<span class="search-left"></span>
+			<input class="prettysearch" type="text" name="q" size="18" />
+			<span class="search-right">&nbsp;</span>
+			</div>
+          <input type="submit" value="Search" class="searchbutton" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+        <p class="searchtip" style="font-size: 90%">
+        Enter search terms or a module, class or function name.
+        </p>
+    </div>
+    <script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+</div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+
+  <div class="section" id="model-reference">
+<h1>Model Reference<a class="headerlink" href="#model-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="modelname">
+<h2>ModelName<a class="headerlink" href="#modelname" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ModelName">
+<em class="property">class </em><tt class="descname">ModelName</tt><a class="headerlink" href="#ModelName" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="ModelName.parent">
+<tt class="descname">parent</tt><a class="headerlink" href="#ModelName.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">TreeForeignKey</span></tt> <tt class="docutils literal"><span class="pre">(self)</span></tt></p>
+<p>The category&#8217;s parent category. Leave this blank for an root category.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ModelName.name">
+<tt class="descname">name</tt><a class="headerlink" href="#ModelName.name" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> <tt class="docutils literal"><span class="pre">CharField(100)</span></tt></p>
+<p>The name of the category.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ModelName.slug">
+<tt class="descname">slug</tt><a class="headerlink" href="#ModelName.slug" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> <tt class="docutils literal"><span class="pre">SlugField</span></tt></p>
+<p>URL-friendly title. It is automatically generated from the title.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ModelName.active">
+<tt class="descname">active</tt><a class="headerlink" href="#ModelName.active" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> <tt class="docutils literal"><span class="pre">BooleanField</span></tt> <em>default:</em> <tt class="xref docutils literal"><span class="pre">True</span></tt></p>
+<p>Is this item active. If it is inactive, all children are set to inactive as well.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="articlebase">
+<h3>ArticleBase<a class="headerlink" href="#articlebase" title="Permalink to this headline">¶</a></h3>
+<p>This is the core model and basis for all management. It includes the basic fields.</p>
+<ul class="simple">
+<li>Title. Required. Populates slug.</li>
+<li>Subtitle. Not required</li>
+<li>Slug. Required. Used in URLs</li>
+<li>Summary. Not required.</li>
+<li>Content</li>
+</ul>
+<p>Attribution Mixins</p>
+<blockquote>
+<div>Single author (staff only)
+User is author
+many authors
+write in author</div></blockquote>
+<p>KeyImageMixin</p>
+<p>PublishingMixin</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="footer">
+    <p>
+      &copy; Copyright 2012, coordt.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+	</p>
+    </div>
+      <div class="clearer"></div>
+    </div>
+	<div id="breadcrumbs">
+		Model Reference
+		</ul>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="../_static/toc.js"></script>
+  </body>
+</html>

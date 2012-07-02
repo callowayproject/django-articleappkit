@@ -1,0 +1,9 @@
+recursive-include doc_src *
+recursive-include docs *
+
+recursive-include articleappkit/media *
+recursive-include articleappkit/templates *
+
+include LICENSE
+include README
+include *.txt

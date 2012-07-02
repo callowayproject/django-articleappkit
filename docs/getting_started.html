@@ -1,0 +1,163 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Getting Started &mdash; django-articleappkit v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="django-articleappkit v0.1 documentation" href="index.html" />
+    <link rel="next" title="Reference" href="reference/index.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+  </head>
+  <body>
+<div id="docstitle">
+	<p>django-articleappkit v0.1 documentation</p>
+</div>
+<div id="header">
+	<div id="title"><h1>Getting Started</h1></div>
+	<ul id="headerButtons">
+		<li id="toc_button"><div class="headerButton"><a href="#">Table of Contents</a></div></li>
+		<li id="page_buttons">
+			<div class="headerButton"><a href="genindex.html" title="General Index" accesskey="I">index</a></div>
+			<div class="headerButton"><a href="reference/index.html" title="Reference" accesskey="N">next</a></div>
+			<div class="headerButton"><a href="installation.html" title="Installation" accesskey="P">previous</a></div>
+		</li>
+	</ul>
+</div>
+
+<div id="sphinxsidebar">
+  <div class="sphinxsidebarwrapper">
+	<ul><li class="toctree-l1"><a href="index.html">Main Page</a></li></ul>
+	<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-case">Simple Case</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference</a></li>
+</ul>
+
+    <div id="searchbox" style="display: none">
+
+        <form class="search" action="search.html" method="get">
+			<div class="search-wrapper">
+			<span class="search-left"></span>
+			<input class="prettysearch" type="text" name="q" size="18" />
+			<span class="search-right">&nbsp;</span>
+			</div>
+          <input type="submit" value="Search" class="searchbutton" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+        <p class="searchtip" style="font-size: 90%">
+        Enter search terms or a module, class or function name.
+        </p>
+    </div>
+    <script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+</div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simple-case">
+<h2>Simple Case<a class="headerlink" href="#simple-case" title="Permalink to this headline">¶</a></h2>
+<p>Article Builder only consists of abstract models. Therefore you will create a brand new app.</p>
+<p><strong>models.py</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">articleappkit.models</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ArticleBase</span><span class="p">,</span> <span class="n">SingleAuthorMixin</span><span class="p">,</span>
+                                   <span class="n">KeyImageMixin</span><span class="p">,</span> <span class="n">PublishingMixin</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Story</span><span class="p">(</span><span class="n">ArticleBase</span><span class="p">,</span> <span class="n">SingleAuthorMixin</span><span class="p">,</span> <span class="n">KeyImageMixin</span><span class="p">,</span> <span class="n">PublishingMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a basic story model with a single author, related to auth.User,</span>
+<span class="sd">    It has a Key Image and contains some useful publishing metadata.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s">u&#39;stories&#39;</span>
+</pre></div>
+</div>
+<p><strong>admin.py</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">articleappkit.admin</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ArticleBaseAdmin</span><span class="p">,</span> <span class="n">ARTICLE_BASE_FIELDSET</span><span class="p">,</span>
+                                  <span class="n">SINGLE_AUTHOR_FIELDSET</span><span class="p">,</span> <span class="n">KEY_IMAGE_FIELDSET</span><span class="p">,</span>
+                                  <span class="n">PUBLISHING_FIELDSET</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Story</span>
+
+
+<span class="k">class</span> <span class="nc">StoryAdmin</span><span class="p">(</span><span class="n">ArticleBaseAdmin</span><span class="p">):</span>
+    <span class="n">fieldsets</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">ARTICLE_BASE_FIELDSET</span><span class="p">,</span>
+        <span class="n">SINGLE_AUTHOR_FIELDSET</span><span class="p">,</span>
+        <span class="n">KEY_IMAGE_FIELDSET</span><span class="p">,</span>
+        <span class="n">PUBLISHING_FIELDSET</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Story</span><span class="p">,</span> <span class="n">StoryAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>urls.py</p>
+<p># slug urls has the url patterns and view for retrieving an article by its
+# slug alone. Another option is SLUG_DATE_URLS which is used when slug unique-
+# ness is based on the publish_date</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">include</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="n">DetailView</span><span class="p">,</span> <span class="n">ListView</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Story</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">&#39;^/&#39;</span><span class="p">,</span> <span class="n">ListView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">Story</span><span class="p">)),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">&#39;^/(?P&lt;slug&gt;[-\w]+)/$&#39;</span><span class="p">,</span> <span class="n">DetailView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">Story</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Building a blog app</p>
+<p>Modifying field names</p>
+<p>Adding WYSIWYG editors</p>
+<p>Adding object relations</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="footer">
+    <p>
+      &copy; Copyright 2012, coordt.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+	</p>
+    </div>
+      <div class="clearer"></div>
+    </div>
+	<div id="breadcrumbs">
+		Getting Started
+		</ul>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="_static/toc.js"></script>
+  </body>
+</html>
