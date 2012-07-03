@@ -103,3 +103,10 @@ INSTALLED_APPS = (
     'articleappkit',
     'simpleapp',
 )
+
+ARTICLEAPPKIT_SETTINGS = {
+    'FIELDNAMES': {
+        'title': 'headline',
+        'author': 'writer',
+    }
+}
