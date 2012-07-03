@@ -8,5 +8,7 @@ Reference
 .. toctree::
    :maxdepth: 2
    :glob:
-   
+
+   models
+   fields
    settings

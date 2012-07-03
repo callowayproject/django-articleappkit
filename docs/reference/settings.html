@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+    
     <title>Settings &mdash; django-articleappkit v0.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="django-articleappkit v0.1 documentation" href="../index.html" />
     <link rel="up" title="Reference" href="index.html" />
-    <link rel="prev" title="Reference" href="index.html" />
+    <link rel="prev" title="Fields" href="fields.html" /> 
   </head>
   <body>
 <div id="docstitle">
@@ -35,7 +35,7 @@
 		<li id="toc_button"><div class="headerButton"><a href="#">Table of Contents</a></div></li>
 		<li id="page_buttons">
 			<div class="headerButton"><a href="../genindex.html" title="General Index" accesskey="I">index</a></div>
-			<div class="headerButton"><a href="index.html" title="Reference" accesskey="P">previous</a></div>
+			<div class="headerButton"><a href="fields.html" title="Fields" accesskey="P">previous</a></div>
 		</li>
 	</ul>
 </div>
@@ -47,13 +47,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="models.html">Model Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fields.html">Fields</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Settings</a></li>
 </ul>
 </li>
 </ul>
 
     <div id="searchbox" style="display: none">
-
+      
         <form class="search" action="../search.html" method="get">
 			<div class="search-wrapper">
 			<span class="search-left"></span>
@@ -78,18 +80,109 @@
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body">
-
+            
   <div class="section" id="settings">
 <h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
-<p>FIELDNAMES (a dict mapping the key (original field name) to the new field name) Used as the verbose name of the model and doesn&#8217;t change the database name or the name developers must use.</p>
-<p>AUTHOR_MODEL (app.model to relate authors)</p>
-<p>AUTHOR_MODEL_LIMIT (limit_choices_to attribute)</p>
-<p>IMAGE_STORAGE</p>
-<p>UNIQUE_TOGETHER (with which field is must the slug be unique. Could be publish_date for date-base url schemes. If blank (default) slugs must always be unique)</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#default-settings" id="id1">Default Settings</a></li>
+<li><a class="reference internal" href="#fieldnames" id="id2">FIELDNAMES</a></li>
+<li><a class="reference internal" href="#author-model" id="id3">AUTHOR_MODEL</a></li>
+<li><a class="reference internal" href="#author-model-limit" id="id4">AUTHOR_MODEL_LIMIT</a></li>
+<li><a class="reference internal" href="#image-storage" id="id5">IMAGE_STORAGE</a></li>
+<li><a class="reference internal" href="#image-upload-to" id="id6">IMAGE_UPLOAD_TO</a></li>
+<li><a class="reference internal" href="#unique-together" id="id7">UNIQUE_TOGETHER</a></li>
+<li><a class="reference internal" href="#status-choices" id="id8">STATUS_CHOICES</a></li>
+<li><a class="reference internal" href="#default-status" id="id9">DEFAULT_STATUS</a></li>
+<li><a class="reference internal" href="#published-status" id="id10">PUBLISHED_STATUS</a></li>
+<li><a class="reference internal" href="#unpublished-status" id="id11">UNPUBLISHED_STATUS</a></li>
+</ul>
+</div>
+<div class="section" id="default-settings">
+<h2><a class="toc-backref" href="#table-of-contents">Default Settings</a><a class="headerlink" href="#default-settings" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ARTICLEAPPKIT_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;FIELDNAMES&#39;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&#39;UNIQUE_TOGETHER&#39;</span><span class="p">:</span> <span class="p">(),</span>
+    <span class="s">&#39;AUTHOR_MODEL&#39;</span><span class="p">:</span> <span class="s">&#39;auth.User&#39;</span><span class="p">,</span>
+    <span class="s">&#39;AUTHOR_MODEL_LIMIT&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;is_staff&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">},</span>
+    <span class="s">&#39;IMAGE_STORAGE&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_FILE_STORAGE</span><span class="p">,</span>
+    <span class="s">&#39;IMAGE_UPLOAD_TO&#39;</span><span class="p">:</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="s">&#39;STATUS_CHOICES&#39;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">u&#39;DRAFT&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">u&#39;PUBLISHED&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">u&#39;UN-PUBLISHED&#39;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="s">&#39;DEFAULT_STATUS&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s">&#39;PUBLISHED_STATUS&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">&#39;UNPUBLISHED_STATUS&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fieldnames">
+<span id="fieldnames-setting"></span><h2><a class="toc-backref" href="#table-of-contents">FIELDNAMES</a><a class="headerlink" href="#fieldnames" title="Permalink to this headline">¶</a></h2>
+<p>A <tt class="docutils literal"><span class="pre">dict</span></tt> mapping the original field name to the new field name. The model uses This value as the verbose name of the model and doesn&#8217;t change the database name or the name developers must use.</p>
+<p>You <em>must</em> include the underscores in the key, but <em>should not</em> include them in the value.</p>
+<p><strong>Default:</strong> <tt class="docutils literal"><span class="pre">{}</span></tt></p>
+</div>
+<div class="section" id="author-model">
+<span id="authormodel-setting"></span><h2><a class="toc-backref" href="#table-of-contents">AUTHOR_MODEL</a><a class="headerlink" href="#author-model" title="Permalink to this headline">¶</a></h2>
+<p>The model used for relations in several <a class="reference internal" href="models.html#attribution-mixins"><em>Attribution Mixins</em></a>. The string should be in <tt class="docutils literal"><span class="pre">'app.Model'</span></tt> format.</p>
+<p><strong>Default:</strong> <tt class="docutils literal"><span class="pre">'auth.User'</span></tt></p>
+</div>
+<div class="section" id="author-model-limit">
+<span id="authormodellimit-setting"></span><h2><a class="toc-backref" href="#table-of-contents">AUTHOR_MODEL_LIMIT</a><a class="headerlink" href="#author-model-limit" title="Permalink to this headline">¶</a></h2>
+<p>A <tt class="docutils literal"><span class="pre">dict</span></tt> passed to the <tt class="docutils literal"><span class="pre">limit_choices_to</span></tt> parameter of several <a class="reference internal" href="models.html#attribution-mixins"><em>Attribution Mixins</em></a>.</p>
+<p><strong>Default:</strong> <tt class="docutils literal"><span class="pre">{'is_staff':</span> <span class="pre">True}</span></tt></p>
+</div>
+<div class="section" id="image-storage">
+<span id="imagestorage-setting"></span><h2><a class="toc-backref" href="#table-of-contents">IMAGE_STORAGE</a><a class="headerlink" href="#image-storage" title="Permalink to this headline">¶</a></h2>
+<p>The Django storage engine to use to store images when using <a class="reference internal" href="models.html#key-image-mixins"><em>Key Image Mixins</em></a>.</p>
+<p><strong>Default:</strong> <tt class="docutils literal"><span class="pre">django.conf.settings.DEFAULT_FILE_STORAGE</span></tt></p>
+</div>
+<div class="section" id="image-upload-to">
+<span id="imageuploadto-setting"></span><h2><a class="toc-backref" href="#table-of-contents">IMAGE_UPLOAD_TO</a><a class="headerlink" href="#image-upload-to" title="Permalink to this headline">¶</a></h2>
+<p>A string which is prefixed to the file name when using <a class="reference internal" href="models.html#key-image-mixins"><em>Key Image Mixins</em></a>. By default, a blank string will use the name of the model.</p>
+<p><strong>Default:</strong> <tt class="docutils literal"><span class="pre">''</span></tt></p>
+</div>
+<div class="section" id="unique-together">
+<span id="uniquetogether-setting"></span><h2><a class="toc-backref" href="#table-of-contents">UNIQUE_TOGETHER</a><a class="headerlink" href="#unique-together" title="Permalink to this headline">¶</a></h2>
+<p>Meant specifically for <a class="reference internal" href="models.html#ArticleBase.slug" title="ArticleBase.slug"><tt class="xref py py-attr docutils literal"><span class="pre">ArticleBase.slug</span></tt></a> to define its uniqueness. If using one of the <a class="reference internal" href="models.html#publishing-mixins"><em>Publishing Mixins</em></a>, you might define <tt class="docutils literal"><span class="pre">UNIQUE_TOGETHER</span></tt> as <tt class="docutils literal"><span class="pre">('pub_date',</span> <span class="pre">'slug')</span></tt> to make the slug unique by date for date-based url schemes.
+If blank (default) slugs must always be unique.</p>
+<p><strong>Default:</strong> <tt class="docutils literal"><span class="pre">''</span></tt></p>
+</div>
+<div class="section" id="status-choices">
+<span id="statuschoices-setting"></span><h2><a class="toc-backref" href="#table-of-contents">STATUS_CHOICES</a><a class="headerlink" href="#status-choices" title="Permalink to this headline">¶</a></h2>
+<p>A tuple of int, string tuples defining the choices for the status field in the <a class="reference internal" href="models.html#PubWorkflowMixin" title="PubWorkflowMixin"><tt class="xref py py-class docutils literal"><span class="pre">PubWorkflowMixin</span></tt></a> mixin.</p>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">u&#39;DRAFT&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">u&#39;PUBLISHED&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">u&#39;UN-PUBLISHED&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-status">
+<span id="defaultstatus-setting"></span><h2><a class="toc-backref" href="#table-of-contents">DEFAULT_STATUS</a><a class="headerlink" href="#default-status" title="Permalink to this headline">¶</a></h2>
+<p>The key of the default status to use in the status field in the <a class="reference internal" href="models.html#PubWorkflowMixin" title="PubWorkflowMixin"><tt class="xref py py-class docutils literal"><span class="pre">PubWorkflowMixin</span></tt></a> mixin.</p>
+<p>Default: <tt class="docutils literal"><span class="pre">0</span></tt></p>
+</div>
+<div class="section" id="published-status">
+<span id="publishedstatus-setting"></span><h2><a class="toc-backref" href="#table-of-contents">PUBLISHED_STATUS</a><a class="headerlink" href="#published-status" title="Permalink to this headline">¶</a></h2>
+<p>The key of the status that means the article is available on the site.</p>
+<p>Default: <tt class="docutils literal"><span class="pre">1</span></tt></p>
+</div>
+<div class="section" id="unpublished-status">
+<span id="unpublishedstatus-setting"></span><h2><a class="toc-backref" href="#table-of-contents">UNPUBLISHED_STATUS</a><a class="headerlink" href="#unpublished-status" title="Permalink to this headline">¶</a></h2>
+<p>The key of the status to use when moving from a published state, to an unpublished state.</p>
+<p>Default: <tt class="docutils literal"><span class="pre">2</span></tt></p>
+</div>
 </div>
 
 
-          </div>
+          </div> 
         </div>
       </div>
     <div class="footer">

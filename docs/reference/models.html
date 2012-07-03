@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+    
     <title>Model Reference &mdash; django-articleappkit v0.1 documentation</title>
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -22,6 +22,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="django-articleappkit v0.1 documentation" href="../index.html" />
+    <link rel="up" title="Reference" href="index.html" />
+    <link rel="next" title="Fields" href="fields.html" />
+    <link rel="prev" title="Reference" href="index.html" /> 
   </head>
   <body>
 <div id="docstitle">
@@ -33,6 +36,8 @@
 		<li id="toc_button"><div class="headerButton"><a href="#">Table of Contents</a></div></li>
 		<li id="page_buttons">
 			<div class="headerButton"><a href="../genindex.html" title="General Index" accesskey="I">index</a></div>
+			<div class="headerButton"><a href="fields.html" title="Fields" accesskey="N">next</a></div>
+			<div class="headerButton"><a href="index.html" title="Reference" accesskey="P">previous</a></div>
 		</li>
 	</ul>
 </div>
@@ -40,14 +45,19 @@
 <div id="sphinxsidebar">
   <div class="sphinxsidebarwrapper">
 	<ul><li class="toctree-l1"><a href="../index.html">Main Page</a></li></ul>
-	<ul>
+	<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Model Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fields.html">Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">Settings</a></li>
+</ul>
+</li>
 </ul>
 
     <div id="searchbox" style="display: none">
-
+      
         <form class="search" action="../search.html" method="get">
 			<div class="search-wrapper">
 			<span class="search-left"></span>
@@ -72,68 +82,245 @@
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body">
-
+            
   <div class="section" id="model-reference">
 <h1>Model Reference<a class="headerlink" href="#model-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="modelname">
-<h2>ModelName<a class="headerlink" href="#modelname" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#articlebase" id="id4">ArticleBase</a></li>
+<li><a class="reference internal" href="#attribution-mixins" id="id5">Attribution Mixins</a><ul>
+<li><a class="reference internal" href="#singleauthormixin" id="id6">SingleAuthorMixin</a></li>
+<li><a class="reference internal" href="#mutliauthormixin" id="id7">MutliAuthorMixin</a></li>
+<li><a class="reference internal" href="#nonstaffauthormixin" id="id8">NonStaffAuthorMixin</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#key-image-mixins" id="id9">Key Image Mixins</a><ul>
+<li><a class="reference internal" href="#keyimagemixin" id="id10">KeyImageMixin</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#publishing-mixins" id="id11">Publishing Mixins</a><ul>
+<li><a class="reference internal" href="#pubworkflowmixin" id="id12">PubWorkflowMixin</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="articlebase">
+<h2><a class="toc-backref" href="#table-of-contents">ArticleBase</a><a class="headerlink" href="#articlebase" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="ModelName">
-<em class="property">class </em><tt class="descname">ModelName</tt><a class="headerlink" href="#ModelName" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="ModelName.parent">
-<tt class="descname">parent</tt><a class="headerlink" href="#ModelName.parent" title="Permalink to this definition">¶</a></dt>
-<dd><p><tt class="xref py py-class docutils literal"><span class="pre">TreeForeignKey</span></tt> <tt class="docutils literal"><span class="pre">(self)</span></tt></p>
-<p>The category&#8217;s parent category. Leave this blank for an root category.</p>
+<dt id="ArticleBase">
+<em class="property">class </em><tt class="descname">ArticleBase</tt><a class="headerlink" href="#ArticleBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the core model and basis for all management. It includes the basic fields.</p>
+<dl class="attribute">
+<dt id="ArticleBase.title">
+<tt class="descname">title</tt><a class="headerlink" href="#ArticleBase.title" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> <tt class="xref py py-class docutils literal"><span class="pre">CharField(255)</span></tt></p>
+<p>The title or headline of the item.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="ModelName.name">
-<tt class="descname">name</tt><a class="headerlink" href="#ModelName.name" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Required</strong> <tt class="docutils literal"><span class="pre">CharField(100)</span></tt></p>
-<p>The name of the category.</p>
+<dt id="ArticleBase.subtitle">
+<tt class="descname">subtitle</tt><a class="headerlink" href="#ArticleBase.subtitle" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">CharField(255)</span></tt></p>
+<p>An optional subtitle or subheadline for the item.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="ModelName.slug">
-<tt class="descname">slug</tt><a class="headerlink" href="#ModelName.slug" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Required</strong> <tt class="docutils literal"><span class="pre">SlugField</span></tt></p>
-<p>URL-friendly title. It is automatically generated from the title.</p>
+<dt id="ArticleBase.slug">
+<tt class="descname">slug</tt><a class="headerlink" href="#ArticleBase.slug" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> <tt class="xref py py-class docutils literal"><span class="pre">SlugField</span></tt></p>
+<p>URL-friendly title. It is automatically generated from the <tt class="docutils literal"><span class="pre">title</span></tt>.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="ModelName.active">
-<tt class="descname">active</tt><a class="headerlink" href="#ModelName.active" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Required</strong> <tt class="docutils literal"><span class="pre">BooleanField</span></tt> <em>default:</em> <tt class="xref docutils literal"><span class="pre">True</span></tt></p>
+<dt id="ArticleBase.summary">
+<tt class="descname">summary</tt><a class="headerlink" href="#ArticleBase.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">TextField</span></tt></p>
 <p>Is this item active. If it is inactive, all children are set to inactive as well.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="ArticleBase.content">
+<tt class="descname">content</tt><a class="headerlink" href="#ArticleBase.content" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> <tt class="xref py py-class docutils literal"><span class="pre">TextField</span></tt></p>
+<p>The primary content of the item. The &#8220;article&#8221; of <tt class="docutils literal"><span class="pre">ArticleBase</span></tt>.</p>
 </dd></dl>
 
-<div class="section" id="articlebase">
-<h3>ArticleBase<a class="headerlink" href="#articlebase" title="Permalink to this headline">¶</a></h3>
-<p>This is the core model and basis for all management. It includes the basic fields.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="attribution-mixins">
+<span id="id1"></span><h2><a class="toc-backref" href="#table-of-contents">Attribution Mixins</a><a class="headerlink" href="#attribution-mixins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="singleauthormixin">
+<h3><a class="toc-backref" href="#table-of-contents">SingleAuthorMixin</a><a class="headerlink" href="#singleauthormixin" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="SingleAuthorMixin">
+<em class="property">class </em><tt class="descname">SingleAuthorMixin</tt><a class="headerlink" href="#SingleAuthorMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mixin that adds a relation to another model (typically auth.User)</p>
+<dl class="attribute">
+<dt id="SingleAuthorMixin.author">
+<tt class="descname">author</tt><a class="headerlink" href="#SingleAuthorMixin.author" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">ForeignKey</span></tt> <tt class="docutils literal"><span class="pre">(</span></tt> <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.auth.models.User</span></tt> <tt class="docutils literal"><span class="pre">)</span></tt></p>
+<p>The model to which this field relates is set in <a class="reference internal" href="settings.html#authormodel-setting"><em>AUTHOR_MODEL</em></a>. The default is <tt class="docutils literal"><span class="pre">auth.User</span></tt>. You can limit the choices available using the <a class="reference internal" href="settings.html#authormodellimit-setting"><em>AUTHOR_MODEL_LIMIT</em></a> setting.</p>
+<p>In your custom Admin class, you may want to include this field in <tt class="docutils literal"><span class="pre">raw_id_fields</span></tt> to reduce load time.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="mutliauthormixin">
+<h3><a class="toc-backref" href="#table-of-contents">MutliAuthorMixin</a><a class="headerlink" href="#mutliauthormixin" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="MultiAuthorMixin">
+<em class="property">class </em><tt class="descname">MultiAuthorMixin</tt><a class="headerlink" href="#MultiAuthorMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mixin that adds a many-to-many relation to another model (typically auth.User)</p>
+<dl class="attribute">
+<dt id="MultiAuthorMixin.author">
+<tt class="descname">author</tt><a class="headerlink" href="#MultiAuthorMixin.author" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">ManyToManyField</span></tt> <tt class="docutils literal"><span class="pre">(</span></tt> <tt class="xref py py-class docutils literal"><span class="pre">django.contrib.auth.models.User</span></tt> <tt class="docutils literal"><span class="pre">)</span></tt></p>
+<p>The model to which this field relates is set in <a class="reference internal" href="settings.html#authormodel-setting"><em>AUTHOR_MODEL</em></a>. The default is <tt class="docutils literal"><span class="pre">auth.User</span></tt>. You can limit the choices available using the <a class="reference internal" href="settings.html#authormodellimit-setting"><em>AUTHOR_MODEL_LIMIT</em></a> setting.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="nonstaffauthormixin">
+<h3><a class="toc-backref" href="#table-of-contents">NonStaffAuthorMixin</a><a class="headerlink" href="#nonstaffauthormixin" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="NonStaffAuthorMixin">
+<em class="property">class </em><tt class="descname">NonStaffAuthorMixin</tt><a class="headerlink" href="#NonStaffAuthorMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mixin that adds a character field to set a one-time or non-staff author</p>
+<dl class="attribute">
+<dt id="NonStaffAuthorMixin.author">
+<tt class="descname">author</tt><a class="headerlink" href="#NonStaffAuthorMixin.author" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">CharField(200)</span></tt></p>
+<p>An HTML-formatted rendering of an author or authors not on staff.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="key-image-mixins">
+<span id="id2"></span><h2><a class="toc-backref" href="#table-of-contents">Key Image Mixins</a><a class="headerlink" href="#key-image-mixins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="keyimagemixin">
+<h3><a class="toc-backref" href="#table-of-contents">KeyImageMixin</a><a class="headerlink" href="#keyimagemixin" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="KeyImageMixin">
+<em class="property">class </em><tt class="descname">KeyImageMixin</tt><a class="headerlink" href="#KeyImageMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mixin that allows author&#8217;s to upload a file to their article. Manages the height and width in fields and provides for a credit to the media&#8217;s author as well.</p>
+<dl class="attribute">
+<dt id="KeyImageMixin.key_image">
+<tt class="descname">key_image</tt><a class="headerlink" href="#KeyImageMixin.key_image" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="fields.html#ModelUploadFileField" title="ModelUploadFileField"><tt class="xref py py-class docutils literal"><span class="pre">ModelUploadFileField</span></tt></a></p>
+<p>A custom Django FileField that uses the name of the model as the default <tt class="docutils literal"><span class="pre">upload_to</span></tt> location. <a class="reference internal" href="settings.html#imagestorage-setting"><em>IMAGE_STORAGE</em></a> allows for customization of the storage engine and <a class="reference internal" href="settings.html#imageuploadto-setting"><em>IMAGE_UPLOAD_TO</em></a> allows customization of the <tt class="docutils literal"><span class="pre">upload_to</span></tt> path.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="KeyImageMixin.key_image_width">
+<tt class="descname">key_image_width</tt><a class="headerlink" href="#KeyImageMixin.key_image_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">IntegerField</span></tt></p>
+<p>A private field for keeping track of the key image&#8217;s width. This field is auto-populated when the record is saved.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="KeyImageMixin.key_image_height">
+<tt class="descname">key_image_height</tt><a class="headerlink" href="#KeyImageMixin.key_image_height" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">IntegerField</span></tt></p>
+<p>A private field for keeping track of the key image&#8217;s height. This field is auto-populated when the record is saved.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="KeyImageMixin.key_image_credit">
+<tt class="descname">key_image_credit</tt><a class="headerlink" href="#KeyImageMixin.key_image_credit" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">CharField(255)</span></tt></p>
+<p>An optional field to store an attribution for the key image, if necessary</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="publishing-mixins">
+<span id="id3"></span><h2><a class="toc-backref" href="#table-of-contents">Publishing Mixins</a><a class="headerlink" href="#publishing-mixins" title="Permalink to this headline">¶</a></h2>
+<p>Publishing Mixins provide for a workflow, even if it is as simple as &#8220;Draft-&gt;Finished&#8221;. With a workflow, only one state is viewable on the site.</p>
+<div class="section" id="pubworkflowmixin">
+<h3><a class="toc-backref" href="#table-of-contents">PubWorkflowMixin</a><a class="headerlink" href="#pubworkflowmixin" title="Permalink to this headline">¶</a></h3>
+<p>This mixin provides for a simple, linear workflow using a choice list. Four settings define crucial aspects to the workflow:</p>
 <ul class="simple">
-<li>Title. Required. Populates slug.</li>
-<li>Subtitle. Not required</li>
-<li>Slug. Required. Used in URLs</li>
-<li>Summary. Not required.</li>
-<li>Content</li>
+<li><a class="reference internal" href="settings.html#statuschoices-setting"><em>STATUS_CHOICES</em></a> is the <tt class="docutils literal"><span class="pre">tuple</span></tt> of <tt class="docutils literal"><span class="pre">(int,</span> <span class="pre">'choice')</span></tt> that defines the key, value pairings.</li>
+<li><a class="reference internal" href="settings.html#defaultstatus-setting"><em>DEFAULT_STATUS</em></a> is the key for the status choice when you first create an article.</li>
+<li><a class="reference internal" href="settings.html#publishedstatus-setting"><em>PUBLISHED_STATUS</em></a> is the key for the status meaning it is live on the site.</li>
+<li><a class="reference internal" href="settings.html#unpublishedstatus-setting"><em>UNPUBLISHED_STATUS</em></a> is the key to use when &#8220;unpublishing&#8221; an item.</li>
 </ul>
-<p>Attribution Mixins</p>
-<blockquote>
-<div>Single author (staff only)
-User is author
-many authors
-write in author</div></blockquote>
-<p>KeyImageMixin</p>
-<p>PublishingMixin</p>
+<dl class="class">
+<dt id="PubWorkflowMixin">
+<em class="property">class </em><tt class="descname">PubWorkflowMixin</tt><a class="headerlink" href="#PubWorkflowMixin" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="PubWorkflowMixin.status">
+<tt class="descname">status</tt><a class="headerlink" href="#PubWorkflowMixin.status" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Required</em> <tt class="xref py py-class docutils literal"><span class="pre">IntegerField</span></tt></p>
+<p>The current state of the article.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PubWorkflowMixin.pub_date">
+<tt class="descname">pub_date</tt><a class="headerlink" href="#PubWorkflowMixin.pub_date" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">DateField</span></tt></p>
+<p>The date in which the article was or will be published. The date and time are separated to provide support for uniqueness by date published. A <tt class="docutils literal"><span class="pre">datetime</span></tt> value will allow multiple articles with the same slug on the same date, since the published times will likely be different.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PubWorkflowMixin.pub_time">
+<tt class="descname">pub_time</tt><a class="headerlink" href="#PubWorkflowMixin.pub_time" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">TimeField</span></tt></p>
+<p>The time in which the article was or will be published.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PubWorkflowMixin.published">
+<tt class="descname">published</tt><a class="headerlink" href="#PubWorkflowMixin.published" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">boolean</span> <span class="pre">property</span></tt></p>
+<p>The <tt class="docutils literal"><span class="pre">published</span></tt> property allows the workflow to act like a boolean. It returns <tt class="xref docutils literal"><span class="pre">True</span></tt> if the article&#8217;s <a class="reference internal" href="#PubWorkflowMixin.status" title="PubWorkflowMixin.status"><tt class="xref py py-attr docutils literal"><span class="pre">PubWorkflowMixin.status</span></tt></a> equals the <a class="reference internal" href="settings.html#publishedstatus-setting"><em>PUBLISHED_STATUS</em></a>.</p>
+<p>If you set this attribute to <tt class="xref docutils literal"><span class="pre">True</span></tt>, it updates its <a class="reference internal" href="#PubWorkflowMixin.pub_date" title="PubWorkflowMixin.pub_date"><tt class="xref py py-attr docutils literal"><span class="pre">PubWorkflowMixin.pub_date</span></tt></a> and <a class="reference internal" href="#PubWorkflowMixin.pub_time" title="PubWorkflowMixin.pub_time"><tt class="xref py py-attr docutils literal"><span class="pre">PubWorkflowMixin.pub_time</span></tt></a> and the <a class="reference internal" href="#PubWorkflowMixin.status" title="PubWorkflowMixin.status"><tt class="xref py py-attr docutils literal"><span class="pre">PubWorkflowMixin.status</span></tt></a> to <a class="reference internal" href="settings.html#publishedstatus-setting"><em>PUBLISHED_STATUS</em></a>.</p>
+<p>If you set this attribute to <tt class="xref docutils literal"><span class="pre">False</span></tt>, it updates its <a class="reference internal" href="#PubWorkflowMixin.status" title="PubWorkflowMixin.status"><tt class="xref py py-attr docutils literal"><span class="pre">PubWorkflowMixin.status</span></tt></a> to <a class="reference internal" href="settings.html#unpublishedstatus-setting"><em>UNPUBLISHED_STATUS</em></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="PubWorkflowMixin.objects">
+<tt class="descname">objects</tt><a class="headerlink" href="#PubWorkflowMixin.objects" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#PubWorkflowManager" title="PubWorkflowManager"><tt class="xref py py-class docutils literal"><span class="pre">PubWorkflowManager</span></tt></a></p>
+<p>A subclass of <tt class="xref py py-class docutils literal"><span class="pre">Manager</span></tt> that adds a <a class="reference internal" href="#PubWorkflowManager.published" title="PubWorkflowManager.published"><tt class="xref py py-meth docutils literal"><span class="pre">PubWorkflowManager.published()</span></tt></a> method.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="PubWorkflowManager">
+<em class="property">class </em><tt class="descname">PubWorkflowManager</tt><a class="headerlink" href="#PubWorkflowManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>A subclass of Django&#8217;s default model manager that adds shortcut functions to get published content</p>
+<dl class="method">
+<dt id="PubWorkflowManager.published">
+<tt class="descname">published</tt><big>(</big><big>)</big><a class="headerlink" href="#PubWorkflowManager.published" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <tt class="xref py py-class docutils literal"><span class="pre">QuerySet</span></tt> of all published content as of the date and time first called.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">QuerySet</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 </div>
 
 
-          </div>
+          </div> 
         </div>
       </div>
     <div class="footer">
@@ -145,6 +332,7 @@ write in author</div></blockquote>
       <div class="clearer"></div>
     </div>
 	<div id="breadcrumbs">
+		<a href="index.html" accesskey="U">Reference</a><img src="../_static/triangle_closed.png" height="9" width="9" alt="&gt;">
 		Model Reference
 		</ul>
 	</div>
