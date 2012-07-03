@@ -36,12 +36,12 @@ class ArticleBase(models.Model):
         blank=True,
         editable=False)
     update_date = models.DateTimeField(
-        _(FIELDNAMES.get('update_date', 'update_date')),
+        _(FIELDNAMES.get('update_date', 'update date')),
         help_text=_("The update date/time to display to the user"),
         blank=True,
         null=True)
     modified_date = models.DateTimeField(
-        _(FIELDNAMES.get('modified_date', 'modified_date')),
+        _(FIELDNAMES.get('modified_date', 'modified date')),
         default=datetime.datetime.now,
         blank=True,
         editable=False)
@@ -104,7 +104,7 @@ class NonStaffAuthorMixin(models.Model):
     A mixin that adds a character field to set a one-time or non-staff author
     """
     non_staff_author = models.CharField(
-        _(FIELDNAMES.get('non_staff_author', 'non_staff_author')),
+        _(FIELDNAMES.get('non_staff_author', 'non-staff author')),
         max_length=200,
         blank=True,
         null=True,
@@ -123,7 +123,7 @@ class KeyImageMixin(models.Model):
     A mixin that adds a key image field and attribution
     """
     key_image = ModelUploadFileField(
-        _(FIELDNAMES.get('key_image', 'key_image')),
+        _(FIELDNAMES.get('key_image', 'key image')),
         null=True,
         blank=True,
         storage=IMAGE_STORAGE(),
@@ -131,7 +131,7 @@ class KeyImageMixin(models.Model):
     key_image_width = models.IntegerField(editable=False, blank=True, null=True)
     key_image_height = models.IntegerField(editable=False, blank=True, null=True)
     key_image_credit = models.CharField(
-        _(FIELDNAMES.get('key_image_credit', 'key_image_credit')),
+        _(FIELDNAMES.get('key_image_credit', 'key image credit')),
         max_length=255,
         blank=True,
         null=True)
@@ -155,16 +155,17 @@ class KeyImageMixin(models.Model):
 # PublishingMixin
 ###
 
-class PublishingManager(models.Manager):
-    def get_query_set(self):
-        qset = super(PublishingManager, self).get_query_set()
+class PubWorkflowManager(models.Manager):
+    def published(self):
+        qset = super(PubWorkflowManager, self).get_query_set()
         qset.filter(
             status=PUBLISHED_STATUS,
             pub_date__lte=datetime.datetime.now(),
             pub_time__lte=datetime.datetime.now())
+        return qset
 
 
-class PublishingMixin(models.Model):
+class PubWorkflowMixin(models.Model):
     """
     A Mixin that adds basic publishing info
     """
@@ -173,12 +174,15 @@ class PublishingMixin(models.Model):
         choices=STATUS_CHOICES,
         default=DEFAULT_STATUS)
     pub_date = models.DateField(
-        _(FIELDNAMES.get('pub_date', 'pub_date')),
+        _(FIELDNAMES.get('pub_date', 'publish date')),
         null=True,
         blank=True)
-    pub_time = models.TimeField(_(FIELDNAMES.get('pub_time', 'pub_time')),
+    pub_time = models.TimeField(_(FIELDNAMES.get('pub_time', 'publish time')),
         null=True,
         blank=True)
+
+    class Meta:
+        abstract = True
 
     @property
     def published(self):
@@ -201,4 +205,4 @@ class PublishingMixin(models.Model):
         else:
             self.status = UNPUBLISHED_STATUS
 
-    published = PublishingManager()
+    objects = PubWorkflowManager()
