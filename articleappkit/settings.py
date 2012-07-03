@@ -10,7 +10,7 @@ DEFAULT_STATUS_CHOICES = (
 
 
 DEFAULT_SETTINGS = {
-    'FIELDNAMES' : {},
+    'FIELDNAMES': {},
     'UNIQUE_TOGETHER': (),
     'AUTHOR_MODEL': 'auth.User',
     'AUTHOR_MODEL_LIMIT': {'is_staff': True},
@@ -23,6 +23,6 @@ DEFAULT_SETTINGS = {
 }
 
 USER_SETTINGS = DEFAULT_SETTINGS.copy()
-USER_SETTINGS.update(getattr(settings, 'articleappkit_SETTINGS', {}))
+USER_SETTINGS.update(getattr(settings, 'ARTICLEAPPKIT_SETTINGS', {}))
 USER_SETTINGS['IMAGE_STORAGE'] = get_storage_class(USER_SETTINGS['IMAGE_STORAGE'])
 globals().update(USER_SETTINGS)
