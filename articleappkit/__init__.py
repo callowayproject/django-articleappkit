@@ -1,13 +1,14 @@
 """
-django-articleappkit
+A set of classes to make creating text- or article-based Django apps easier.
 """
 __version_info__ = {
     'major': 0,
-    'minor': 1,
+    'minor': 2,
     'micro': 0,
-    'releaselevel': 'final',
+    'releaselevel': 'beta',
     'serial': 1
 }
+
 
 def get_version(short=False):
     assert __version_info__['releaselevel'] in ('alpha', 'beta', 'final')
