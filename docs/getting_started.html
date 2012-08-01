@@ -2,17 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started &mdash; django-articleappkit v0.1 documentation</title>
+    <title>Getting Started &mdash; django-articleappkit 0.2b1 documentation</title>
+    
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '0.2b1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -21,13 +24,13 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="django-articleappkit v0.1 documentation" href="index.html" />
+    <link rel="top" title="django-articleappkit 0.2b1 documentation" href="index.html" />
     <link rel="next" title="Reference" href="reference/index.html" />
-    <link rel="prev" title="Installation" href="installation.html" /> 
+    <link rel="prev" title="Article App Kit v 0.2" href="index.html" /> 
   </head>
   <body>
 <div id="docstitle">
-	<p>django-articleappkit v0.1 documentation</p>
+	<p>django-articleappkit 0.2b1 documentation</p>
 </div>
 <div id="header">
 	<div id="title"><h1>Getting Started</h1></div>
@@ -36,7 +39,7 @@
 		<li id="page_buttons">
 			<div class="headerButton"><a href="genindex.html" title="General Index" accesskey="I">index</a></div>
 			<div class="headerButton"><a href="reference/index.html" title="Reference" accesskey="N">next</a></div>
-			<div class="headerButton"><a href="installation.html" title="Installation" accesskey="P">previous</a></div>
+			<div class="headerButton"><a href="index.html" title="Article App Kit v 0.2" accesskey="P">previous</a></div>
 		</li>
 	</ul>
 </div>
@@ -45,8 +48,8 @@
   <div class="sphinxsidebarwrapper">
 	<ul><li class="toctree-l1"><a href="index.html">Main Page</a></li></ul>
 	<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-case">Simple Case</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modifying-field-names">Modifying field names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#making-your-own-settings">Making your own settings</a></li>
@@ -86,15 +89,27 @@
             
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Installation is easy using <tt class="docutils literal"><span class="pre">pip</span></tt> or <tt class="docutils literal"><span class="pre">easy_install</span></tt>.</p>
+<div class="highlight-bash"><div class="highlight"><pre>pip install django-articleappkit
+</pre></div>
+</div>
+</div>
 <div class="section" id="simple-case">
 <h2>Simple Case<a class="headerlink" href="#simple-case" title="Permalink to this headline">¶</a></h2>
-<p>Article Builder only consists of abstract models. Therefore you will create a brand new app. We&#8217;ll call this app <tt class="docutils literal"><span class="pre">Story</span></tt>.</p>
+<p>Article App Kit consists of abstract model factories. The model factory allows you to pass a configuration dictionary to set up each class. Django Article App Kit wasn&#8217;t meant to work by itself. So you will create a brand new app. We&#8217;ll call this app <tt class="docutils literal"><span class="pre">Story</span></tt>.</p>
 <p><strong>models.py</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">articleappkit.models</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ArticleBase</span><span class="p">,</span> <span class="n">SingleAuthorMixin</span><span class="p">,</span>
-                                   <span class="n">KeyImageMixin</span><span class="p">,</span> <span class="n">PublishingMixin</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">articleappkit.models</span> <span class="kn">import</span> <span class="p">(</span><span class="n">get_articlebase</span><span class="p">,</span> <span class="n">get_singleauthormixin</span><span class="p">,</span>
+                                   <span class="n">get_keyimagemixin</span><span class="p">,</span> <span class="n">get_pubworkflowmixin</span><span class="p">)</span>
+
+<span class="n">ArticleBase</span> <span class="o">=</span> <span class="n">get_articlebase</span><span class="p">()</span>
+<span class="n">SingleAuthorMixin</span> <span class="o">=</span> <span class="n">get_singleauthormixin</span><span class="p">()</span>
+<span class="n">KeyImageMixin</span> <span class="o">=</span> <span class="n">get_keyimagemixin</span><span class="p">()</span>
+<span class="n">PubWorkflowMixin</span> <span class="o">=</span> <span class="n">get_pubworkflowmixin</span><span class="p">()</span>
 
 
-<span class="k">class</span> <span class="nc">Story</span><span class="p">(</span><span class="n">ArticleBase</span><span class="p">,</span> <span class="n">SingleAuthorMixin</span><span class="p">,</span> <span class="n">KeyImageMixin</span><span class="p">,</span> <span class="n">PublishingMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Story</span><span class="p">(</span><span class="n">ArticleBase</span><span class="p">,</span> <span class="n">SingleAuthorMixin</span><span class="p">,</span> <span class="n">KeyImageMixin</span><span class="p">,</span> <span class="n">PubWorkflowMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a basic story model with a single author, related to auth.User,</span>
 <span class="sd">    It has a Key Image and contains some useful publishing metadata.</span>
@@ -105,6 +120,7 @@
         <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s">u&#39;stories&#39;</span>
 </pre></div>
 </div>
+<p>In this simple case, we aren&#8217;t going to change any of the defaults. After we import several model factories, we call them to retrieve the classes. The <tt class="docutils literal"><span class="pre">Story</span></tt> class inherits from these classes, and nothing else is required except providing a proper <tt class="docutils literal"><span class="pre">verbose_name</span></tt>.</p>
 <p><strong>admin.py</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">articleappkit.admin</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ArticleBaseAdmin</span><span class="p">,</span> <span class="n">ARTICLE_BASE_FIELDSET</span><span class="p">,</span>
@@ -176,7 +192,7 @@ __metaclass__ = ArticleBase</dd>
     <div class="footer">
     <p>
       &copy; Copyright 2012, coordt.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
 	</p>
     </div>
       <div class="clearer"></div>
