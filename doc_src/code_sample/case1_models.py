@@ -1,10 +1,10 @@
-from articleappkit.models import (get_articlebase, get_singleauthormixin,
-                                   get_keyimagemixin, get_pubworkflowmixin)
+from articleappkit.models import (get_article_base, get_singleauthor_mixin,
+                                   get_keyimage_mixin, get_pubworkflow_mixin)
 
-ArticleBase = get_articlebase()
-SingleAuthorMixin = get_singleauthormixin()
-KeyImageMixin = get_keyimagemixin()
-PubWorkflowMixin = get_pubworkflowmixin()
+ArticleBase = get_article_base()
+SingleAuthorMixin = get_singleauthor_mixin()
+KeyImageMixin = get_keyimage_mixin()
+PubWorkflowMixin = get_pubworkflow_mixin()
 
 
 class Story(ArticleBase, SingleAuthorMixin, KeyImageMixin, PubWorkflowMixin):

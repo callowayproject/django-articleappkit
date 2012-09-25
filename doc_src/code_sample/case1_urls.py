@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url, include
+from django.conf.urls import patterns, url
 from django.views.generic import DetailView, ListView
 
 from .models import Story
