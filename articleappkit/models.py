@@ -97,7 +97,7 @@ class ArticleSite(object):
                 verbose_name=_(config['FIELDNAMES'].get('author', 'author')),
                 blank=True,
                 null=True,
-                limit_choices_to=config['AUTHOR_MODEL_LIMIT'])
+                **config['AUTHOR_FIELD_OPTIONS'])
 
             class Meta:
                 abstract = True
@@ -115,7 +115,7 @@ class ArticleSite(object):
                 verbose_name=_(config['FIELDNAMES'].get('authors', 'authors')),
                 blank=True,
                 null=True,
-                limit_choices_to=config['AUTHOR_MODEL_LIMIT'])
+                **config['AUTHOR_FIELD_OPTIONS'])
 
             class Meta:
                 abstract = True
