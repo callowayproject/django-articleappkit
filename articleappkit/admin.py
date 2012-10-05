@@ -29,7 +29,7 @@ SINGLE_AUTHOR_FIELDSET = (
 
 MULTI_AUTHOR_FIELDSET = (
     'Authors', {
-        'fieldset': ('authors')
+        'fields': ('authors')
     }
 )
 NONSTAFF_AUTHOR_FIELDSET = (
