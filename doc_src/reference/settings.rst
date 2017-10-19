@@ -17,7 +17,7 @@ Default Settings
         'FIELDNAMES': {},
         'UNIQUE_TOGETHER': (),
         'AUTHOR_MODEL': 'auth.User',
-        'AUTHOR_MODEL_LIMIT': {'is_staff': True},
+        'AUTHOR_FIELD_OPTIONS': {'limit_choices_to': {'is_staff': True}},
         'IMAGE_STORAGE': settings.DEFAULT_FILE_STORAGE,
         'IMAGE_UPLOAD_TO': '',
         'STATUS_CHOICES': (
@@ -50,14 +50,14 @@ The model used for relations in several :ref:`attribution_mixins`. The string sh
 
 **Default:** ``'auth.User'``
 
-.. _authormodellimit_setting:
+.. _authorfieldoptions_setting:
 
-AUTHOR_MODEL_LIMIT
-==================
+AUTHOR_FIELD_OPTIONS
+====================
 
-A ``dict`` passed to the ``limit_choices_to`` parameter of several :ref:`attribution_mixins`.
+A ``dict`` passed as ``kwargs`` to several :ref:`attribution_mixins`.
 
-**Default:** ``{'is_staff': True}``
+**Default:** ``{'limit_choices_to': {'is_staff': True}}``
 
 .. _imagestorage_setting:
 

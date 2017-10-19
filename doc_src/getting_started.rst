@@ -52,15 +52,7 @@ You can override the default field names by adding a ``FIELDNAMES`` key to the `
 Making your own settings
 ========================
 
-This may have to be a v2 feature. The import logic is wonky as the model needs to import the settings in the module, and the final app imports the classes from the module.
-
-Might try using a metaclass to allow importation of the settings by setting the settings module in the class like:
-
-from storyapp import settings as story_settings
-
-class Story():
-    settings = story_settings
-    __metaclass__ = ArticleBase
+Pass your custom configuration to the
 
 
 Adding WYSIWYG editors
